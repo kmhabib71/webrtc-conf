@@ -211,7 +211,6 @@
                 var offer = await connection.createOffer();
                 await connection.setLocalDescription(offer);
                 console.log("offer", offer);
-                console.log('connection.signalingState:' + connection.signalingState);
                 sdpFunction(JSON.stringify({
                     'offer': connection.localDescription
                 }), connid);
