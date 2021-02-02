@@ -159,6 +159,7 @@
                 var connection = new RTCPeerConnection(iceConfig);
 
                 connection.onicecandidate = function(event) {
+                    console.log("ice candidate: ", event.candidate)
                     if (event.candidate) {
                         sdpFunction(JSON.stringify({
                             'iceCandidate': event.candidate
@@ -209,6 +210,8 @@
                 var connection = users_connection[connid];
                 var offer = await connection.createOffer();
                 await connection.setLocalDescription(offer);
+                console.log("offer", offer);
+                console.log('connection.signalingState:' + connection.signalingState);
                 sdpFunction(JSON.stringify({
                     'offer': connection.localDescription
                 }), connid);
@@ -254,7 +257,10 @@
 
                 if (message.answer) {
                     await users_connection[from_connid].setRemoteDescription(new RTCSessionDescription(message.answer));
+                     console.log('connection in answer process', users_connection[from_connid]);
+
                 } else if (message.offer) {
+                     console.log('offer process', message.offer);
                     if (!users_connection[from_connid]) {
                         await createConnection(from_connid);
                     }
@@ -265,6 +271,7 @@
                         'answer': answer
                     }), from_connid)
                 } else if (message.iceCandidate) {
+                    console.log('iceCandidate process', message.iceCandidate);
                     if (!users_connection[from_connid]) {
                         await createConnection(from_connid);
                     }
