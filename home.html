@@ -63,29 +63,7 @@
                 window.location.replace(window.location.origin + "/home.html"+ "/?meetingID=" + meetingID + "&username=" + set_username);
             })
             
-            if (!meetingID) {
-                window.location.replace(window.location.origin + "/log.html");
-                return;
-            }else{
-            
-            if (!username) {
-            window.location.replace(window.location.origin + "/index.html"+ "/?meetingID=" + meetingID);
-            } else {
-               
-                $("#localUser").show();
-                $(".username-wrap").hide();
-                //                $("#remote-video").show();
-                $("#localUser h5").text(username);
-                document.title = username;
-                
-
-            }
-            
-            
-            }
-
-
-          
+         
 
 
 
