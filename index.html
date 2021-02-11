@@ -220,6 +220,7 @@
             socket.on('sdpProcess', async function(data) {
                 await sdpProcess(data.message, data.from_connid);
                 console.log("type of sdp process", data.message); 
+                console.log("sdp from connid", data.from_connid); 
             })
 
             async function processMedia() {
