@@ -13,7 +13,7 @@ const PORT = 3000 || process.env.PORT;
 console.log(`Server running on port ${PORT}`);
 var userConnection = [];
 
-io.on('connection', (socket) => {
+i.on('connection', (socket) => {
     socket.on('users_info_to_signaling_server', (data) => {
         var other_users = userConnection.filter(p => p.meeting_id == data.meetingid);
         userConnection.push({
