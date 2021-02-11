@@ -35,6 +35,7 @@ io.on('connection', (socket) => {
 
     })
     socket.on('sdpProcess', (data) => {
+        console.log(`sdp process ${data.message}`);
         socket.to(data.to_connid).emit('sdpProcess', {
             message: data.message,
             from_connid: socket.id
