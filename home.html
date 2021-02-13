@@ -164,7 +164,7 @@
             if (!audioStream[connId]) {
                 audioStream[connId] = new MediaStream();
             }
-            if (event.track.kind == 'video') {
+            
                 remoteStream[connId].getTracks().forEach(t => remoteStream[connId].removeTrack(t));
                 remoteStream[connId].addTrack(event.track);
                 var remoteVideoDiv = document.getElementById('video_' + connId);
@@ -172,15 +172,7 @@
                 remoteVideoDiv.srcObject = remoteStream[connId];
                 remoteVideoDiv.load();
 
-            } else if (event.track.kind == 'audio') {
-                audioStream[connId].getTracks().forEach(t => audioStream[connId].removeTrack(t));
-                audioStream[connId].addTrack(event.track);
-                var remoteAudioDiv = document.getElementById('audio_' + connId);
-                remoteAudioDiv.srcObject = null;
-                remoteAudioDiv.srcObject = audioStream[connId];
-                remoteAudioDiv.load();
-
-            }
+            
         }
 
         users_connectionID[connId] = connId;
