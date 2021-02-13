@@ -215,6 +215,7 @@
                 video: false,
                 audio: true
             })
+            if (event.track.kind == 'video') {
             audioTrack = astream.getAudioTracks()[0];
             audioTrack.enable = true;
             updateMediaSenders(audioTrack, rtpAudioSenders);
@@ -223,7 +224,7 @@
 
             localVideoDiv.srcObject = new MediaStream([mediaTrack]);
             updateMediaSenders(mediaTrack, rtpVideoSenders);
-
+            }
 
         } catch (e) {
             console.log(e);
