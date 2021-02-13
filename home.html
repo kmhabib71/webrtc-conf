@@ -80,7 +80,7 @@
             to_connid: to_connid
         })
     }
-    socket = io();
+    socket = io.connect();
 
     socket.on('connect', () => {
         if (socket.connected) {
