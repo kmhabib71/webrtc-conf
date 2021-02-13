@@ -232,11 +232,7 @@
     async function sdpProcess(message, from_connid) {
         message = JSON.parse(message);
 
-        if (message.answer) {
-            await users_connection[from_connid].setRemoteDescription(new RTCSessionDescription(message.answer));
-            console.log('connection in answer process', users_connection[from_connid]);
-
-        } else if (message.offer) {
+       if (message.offer) {
             console.log('offer process', message.offer);
             if (!users_connection[from_connid]) {
                 await createConnection(from_connid);
@@ -247,6 +243,10 @@
             sdpFunction(JSON.stringify({
                 'answer': answer
             }), from_connid)
+        } else if (message.answer) {
+            await users_connection[from_connid].setRemoteDescription(new RTCSessionDescription(message.answer));
+            console.log('connection in answer process', users_connection[from_connid]);
+
         } else if (message.iceCandidate) {
             console.log('iceCandidate process', message.iceCandidate);
             if (!users_connection[from_connid]) {
