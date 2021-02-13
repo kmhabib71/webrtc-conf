@@ -161,10 +161,7 @@
             if (!remoteStream[connId]) {
                 remoteStream[connId] = new MediaStream();
             }
-            if (!audioStream[connId]) {
-                audioStream[connId] = new MediaStream();
-            }
-            
+           
                 remoteStream[connId].getTracks().forEach(t => remoteStream[connId].removeTrack(t));
                 remoteStream[connId].addTrack(event.track);
                 var remoteVideoDiv = document.getElementById('video_' + connId);
